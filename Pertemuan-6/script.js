@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ===== FETCH API: FAKTA KUCING =====
+// ===== FETCH API: FAKTA CYBER SECURITY =====
 
 const isiFakta = document.querySelector("#isi-fakta");
 const btnRefresh = document.querySelector("#btnRefresh");
@@ -37,7 +37,7 @@ async function ambilFakta() {
     isiFakta.textContent = "⏳ Memuat fakta...";
 
     try {
-        const response = await fetch("https://api.ryocantsleep.com/api/facts");
+        const response = await fetch("https://api.ryocantsleep.com/api/cysecfacts");
 
         // Cek apakah HTTP response OK (status 200-299)
         if (!response.ok) {
