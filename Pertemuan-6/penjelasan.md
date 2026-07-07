@@ -450,7 +450,14 @@ async function ambilFakta() {
 
 ```javascript
     try {
-        const response = await fetch("https://api.ryocantsleep.com/api/cysecfacts");
+        const endpoints = [
+            "https://api.ryocantsleep.com/api/cysecfacts",
+            "https://api.ryocantsleep.com/api/aifacts",
+            ...
+        ];
+        const randomEndpoint = endpoints[Math.floor(Math.random() * endpoints.length)];
+        
+        const response = await fetch(randomEndpoint);
         if (!response.ok) { throw new Error("HTTP Error..."); }
         
         const data = await response.json();
@@ -458,7 +465,9 @@ async function ambilFakta() {
     } catch (error) { ... }
 ```
 - `try...catch`: Struktur keamanan yang wajib ada saat menggunakan komunikasi eksternal. Blok `try` "mencoba" menjalankan perintah ambil data, namun jika koneksi putus atau server tujuan mati, program akan melompat ke blok `catch` untuk menampilkan pesan *error* yang ramah kepada pengguna tanpa membuat seluruh aplikasi *crash*.
-- `await fetch(...)`: Inti pertukaran data! Melakukan panggilan HTTP Request (GET) ke *endpoint* API (Cyber Security Facts API). Perintah ini akan "menunggu" (*await*) sampai server memberikan balasan.
+- `const endpoints = [...]`: Kita menyimpan semua daftar tautan URL (*endpoint*) dari berbagai kategori fakta (Cyber Security, AI, dll) ke dalam struktur data yang disebut **Array** (daftar berurut).
+- `Math.random()` dan `Math.floor()`: `Math.random()` berfungsi menghasilkan angka acak desimal. Jika dikombinasikan dengan jumlah *link* yang ada di dalam *array* (`endpoints.length`) lalu dibulatkan ke bawah oleh `Math.floor()`, perintah ini secara dinamis akan menghasilkan satu indeks alamat URL yang diundi secara acak.
+- `await fetch(randomEndpoint)`: Inti pertukaran data! Melakukan panggilan HTTP Request (GET) ke *endpoint* API yang sudah terpilih acak di atas. Perintah ini akan "menunggu" (*await*) sampai server memberikan balasan.
 - `await response.json()`: Mengubah teks balasan (*response*) mentah dari server yang formatnya JSON (JavaScript Object Notation) menjadi objek struktur JavaScript asli agar isinya bisa dibaca.
 - `data.fact`: Mengekstrak nilai teks fakta spesifik yang ada di dalam objek tersebut dan menayangkannya ke layar HTML menggantikan tulisan "Memuat...".
 
