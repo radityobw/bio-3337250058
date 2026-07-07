@@ -450,7 +450,7 @@ async function ambilFakta() {
 
 ```javascript
     try {
-        const response = await fetch("https://api.ryocantsleep.com/api/facts");
+        const response = await fetch("https://api.ryocantsleep.com/api/cysecfacts");
         if (!response.ok) { throw new Error("HTTP Error..."); }
         
         const data = await response.json();
