@@ -225,6 +225,15 @@ footer p {
     margin: 0;
 }
 
+a:hover {
+    color: #fff;
+}
+
+/* Memaksa warna teks menjadi putih saat tombol email (btn-outline-info) di-hover */
+footer .btn-outline-info:hover {
+    color: #ffffff !important;
+}
+
 /* Media Query untuk Layout Responsif */
 @media (min-width: 768px) {
     main {
